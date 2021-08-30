@@ -1,5 +1,6 @@
 html{
     background-color: #0c0f1d;
+    min-height: 100vh
 }
 
 .contenedor{

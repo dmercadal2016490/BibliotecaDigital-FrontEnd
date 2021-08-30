@@ -6,10 +6,17 @@
     height: 50px;
     width: 50px;
     border-radius: 150px;
+    margin-top: 5px;
 }
 
 .texto1{
     color: white;
     font-size: 30px;
     margin-left: 950px;
+}
+
+.textoAdmin{
+    color: white;
+    font-size: 30px;
+    margin-left: 850px;
 }

@@ -1,0 +1,28 @@
+<html>
+    <br><br><h1 class="texto1">Usuarios que mas han rentado</h1>
+    <div id="main-container">
+        <table >
+            <thead>
+                <tr>
+                    <th>CUI</th>
+                    <th>Usuario</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Libros rentados</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let data of data">
+                <td>{{data.cui}}</td>
+                <td>{{data.username}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.lastname}}</td>
+                <td>{{data.email}}</td>
+                <td>{{data.role}}</td>
+                <td>{{data.librosRentados}}</td>
+            </tr>
+        </table>
+    </div><br>
+    <h2 class="texto2">&copy;Mercadal</h2><br>
+</html>

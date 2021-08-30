@@ -1,0 +1,52 @@
+<html>
+    <br><br><h1 class="texto1">Usuarios en la base de datos</h1>
+    <div id="main-container">
+        <table >
+            <thead>
+                <tr>
+                    <th>CUI</th>
+                    <th>Usuario</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let users of users">
+                <td>{{users.cui}}</td>
+                <td>{{users.username}}</td>
+                <td>{{users.name}}</td>
+                <td>{{users.lastname}}</td>
+                <td>{{users.email}}</td>
+                <td>{{users.role}}</td>
+                <td>
+                    <button *ngIf="users.username != 'adminpractica'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar" (click)="obetenerData(users)">-</button>
+                    <button class="btn btn-info"><img src="../../../assets/img/pencil.png" class="imagen"></button>
+                </td>
+            </tr>
+        </table>
+    </div><br>
+    <h2 class="texto2">&copy;Mercadal</h2><br>
+</html>
+
+<!-- MODAL PARA ELIMINAR CUENTA -->
+<div class="modal fade" id="borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Peligro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>¿Seguro que quieres eliminar a {{user.username}}?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="deleteUser()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>

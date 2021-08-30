@@ -79,4 +79,14 @@ export class RestLibroService {
     return this.http.put(this.uri +idUser + '/quitarCopias/'+idLibro,params,{headers:headers})
       .pipe(map(this.extractData))
   }
+
+  libroMasRentado(){
+    return this.http.get(this.uri + 'libroMasRentado' , this.httpOptions)
+      .pipe(map(this.extractData))
+  }
+
+  revistaMasRentada(){
+    return this.http.get(this.uri + 'RevistaMasRentada' , this.httpOptions)
+      .pipe(map(this.extractData))
+  }
 }

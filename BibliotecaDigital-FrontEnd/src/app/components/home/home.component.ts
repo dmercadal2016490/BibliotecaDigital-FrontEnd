@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
+import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { Libro } from 'src/app/models/libro';
+import { CONNECTION } from 'src/app/services/global';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,13 @@ export class HomeComponent implements OnInit {
   libros;
   libro:Libro;
   libroSelected:Libro;
+  public filesToUpload:Array<File>;
+  uri;
 
-  constructor(private restLibro: RestLibroService, private restUser:RestUserService) {
+  constructor(private restLibro: RestLibroService, private restUser:RestUserService, private uploadImage: UploadImageService) {
     this.user = this.restUser.getUser();
     this.token = this.restUser.getToken();
+    this.uri = CONNECTION.URI;
    }
 
   ngOnInit(): void {
@@ -77,6 +82,28 @@ export class HomeComponent implements OnInit {
 
   refreshPage() {
     window.location.reload();
+  }
+
+  subirImagen(){
+    this.uploadImage.fileRequestCine(this.user._id, this.libro._id,[],this.filesToUpload,this.token, 'image')
+      .then((res:any)=>{
+        if(res.libro){
+          this.libro.image = res.libroImage;
+          this.libro = res.libro;
+          localStorage.setItem('libros', JSON.stringify(this.libro));
+          alert('Imagen de libro subida con exito');
+          this.refreshPage();
+        }else{
+          alert('imagen subida')
+        }
+      },
+      error => console.log(<any>error)
+      )
+  }
+
+  fileChange(fileInput){
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    console.log(this.filesToUpload)
   }
 
 }

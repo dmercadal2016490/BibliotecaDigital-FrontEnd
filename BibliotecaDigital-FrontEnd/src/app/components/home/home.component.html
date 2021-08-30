@@ -1,7 +1,8 @@
 <html>
 
 <div class="card text-center" *ngFor="let libros of libros">
-    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img *ngIf="libros.image == null" src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img *ngIf="libros.image" src="{{uri+'getImageLibro/'+libros.image}}" class="imegenLibro"></a>
 </div>
 </html>
 
@@ -14,7 +15,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <img src="../../../assets/img/portada.jpg" class="imagenModal">
+        <img *ngIf="libro.image == null" src="../../../assets/img/portada.jpg" class="imagenModal">
+        <img *ngIf="libro.image" src="{{uri+'getImageLibro/'+libro.image}}" class="imagenModal">
         <p class="bibliografia">{{libro.bibliografia}}</p>
         <p class="textoModal">Autor: {{libro.autor}}</p>
         <p class="textoModal">Descripción: {{libro.descripcion}}</p>
@@ -32,6 +34,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
+          <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imagen">Subir Imagen</button>
           <button type="button" class="btn btn-primary" *ngIf="libro.disponibles > 0">Reservar</button>
         </div>
       </div>
@@ -79,3 +82,29 @@
       </div>
     </div>
   </div> 
+
+
+<!-- Modal para subir imgen-->
+<div class="modal fade" id="imagen" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Imagen de cine para: {{libro.titulo}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>Elije tu imagen</h3>
+        <form #formUpload="ngForm">
+          <label for="inputImage"></label>
+          <input type="file" name="image" id="inputImage" (change)="fileChange($event)" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="subirImagen()">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 html{
     background-image: url('../../../assets/img/librera.jpg');
     background-size: cover;
+    min-height: 100vh
 }
 
 /*#cards{
@@ -33,6 +34,11 @@ html{
     width: 120px;
 }
 
+.imegenLibro{
+    height: 180px;
+    width: 120px;
+}
+
 .modal-body{
     background-size: cover;
     background-image: url('../../../assets/img/madera.jpg');
@@ -57,4 +63,8 @@ html{
     margin-left: 150px;
     padding-left: 10px;
     margin-right: 220px;
+}
+
+img{
+    border-style: ridge;
 }

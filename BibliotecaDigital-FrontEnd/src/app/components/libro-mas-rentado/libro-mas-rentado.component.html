@@ -1,0 +1,28 @@
+<html>
+    <br><br><h1 class="texto1">Libros mas rentados</h1>
+    <div id="main-container">
+        <table >
+            <thead>
+                <tr>
+                    <th>Bibliografía</th>
+                    <th>Titulo</th>
+                    <th>Autor</th>
+                    <th>Descripción</th>
+                    <th>Frecuencia</th>
+                    <th>Ejemplares</th>
+                    <th>Compras</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let data of data">
+                <td>{{data.bibliografia}}</td>
+                <td>{{data.titulo}}</td>
+                <td>{{data.autor}}</td>
+                <td>{{data.descripcion}}</td>
+                <td>{{data.frecuencia}}</td>
+                <td>{{data.ejemplares}}</td>
+                <td>{{data.compras}}</td>
+            </tr>
+        </table>
+    </div><br>
+    <h2 class="texto2">&copy;Mercadal</h2><br>
+</html>

@@ -1,0 +1,43 @@
+<html>
+    <p>.</p>
+    <form class="formulario" #register="ngForm" (ngSubmit)="onSubmit(register)">
+        <img src="../../../assets/img/saveUser.png">
+        <h1 class="texto1">Agregar Usuarios</h1><br>
+        <div class="division">
+            <p class="texto">CUI/Carnet</p>
+            <input [(ngModel)]="user.cui" name="cui" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Username</p>
+            <input [(ngModel)]="user.username" name="username" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Contraseña</p>
+            <input [(ngModel)]="user.password" name="password" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Nombres</p>
+            <input [(ngModel)]="user.name" name="name" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Apellidos</p>
+            <input [(ngModel)]="user.lastname" name="lastname" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Correo Electronico</p>
+            <input [(ngModel)]="user.email" name="email" type="text" placeholder="example@correo.com">
+        </div><br>
+        <div class="division">
+            <p class="texto">Rol del Usuario</p>
+            <select [(ngModel)]="user.role" name="role">
+                <option *ngFor="let option of optionsRol" [value]="option">{{option}}</option>
+            </select>
+        </div><br>
+        <button class="btn btn-outline-success" type="submit">Crear Usuario</button><br>
+        <button class="btn btn-outline-secondary btn-lg" routerLink="/home">Cancelar</button><hr>
+        <div *ngIf="message" class="alert alert-danger" role="alert">
+            {{message}} {{message2}}
+        </div>
+    </form><br>
+    <h2 >&copy;Mercadal</h2><br>
+</html>
