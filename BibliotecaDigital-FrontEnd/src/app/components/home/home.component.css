@@ -1,0 +1,60 @@
+html{
+    background-image: url('../../../assets/img/librera.jpg');
+    background-size: cover;
+}
+
+/*#cards{
+    margin: 1rem;
+    display: inline-block;
+    margin: 1.5rem;
+    background: transparent;
+}*/
+
+.card-header{
+    background: transparent;
+    color: white;
+    text-align: center;
+}
+
+.card{
+    display: inline-block;
+    height: 150px;
+    width: 200px;
+    background: transparent;
+    margin-right: 50px;
+    margin-left: 80px;
+    margin-top: 150px;
+    border-style: none;
+    margin-bottom: 50px;
+}
+
+.imegenDefecto{
+    height: 180px;
+    width: 120px;
+}
+
+.modal-body{
+    background-size: cover;
+    background-image: url('../../../assets/img/madera.jpg');
+}
+
+.imagenModal{
+    height: 180px;
+    width: 130px;
+    float: left;
+}
+
+.textoModal{
+    color: white;
+    font-size: 20px;
+    padding-left: 150px;
+}
+
+.bibliografia{
+    color: white;
+    font-size: 20px;
+    background-color: blue;
+    margin-left: 150px;
+    padding-left: 10px;
+    margin-right: 220px;
+}

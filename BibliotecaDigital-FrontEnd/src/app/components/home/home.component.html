@@ -1,0 +1,81 @@
+<html>
+
+<div class="card text-center" *ngFor="let libros of libros">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
+</div>
+</html>
+
+<!-- Modal de libro -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{libro.titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <img src="../../../assets/img/portada.jpg" class="imagenModal">
+        <p class="bibliografia">{{libro.bibliografia}}</p>
+        <p class="textoModal">Autor: {{libro.autor}}</p>
+        <p class="textoModal">Descripción: {{libro.descripcion}}</p>
+        <p class="textoModal">{{libro.palabrasClaves}}</p>
+        <p class="textoModal">{{libro.temas}}</p>
+        <p class="textoModal">Frecuencia: {{libro.frecuencia}}</p>
+        <p class="textoModal">Ejemplares: {{libro.ejemplares}}</p>
+        <p class="textoModal">Compras del libro: {{libro.compras}}</p>
+        <p class="textoModal">Copias disponibles: {{libro.disponibles}}</p>
+        <div *ngIf="libro.disponibles == 0" class="alert alert-danger" role="alert">
+            No hay copias de este libro para reservar
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
+          <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
+          <button type="button" class="btn btn-primary" *ngIf="libro.disponibles > 0">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal para agregar copias-->
+<div class="modal fade" id="agregarCopias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar copias para: {{libro.titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <h1>Cantidad</h1><br><br>
+                <input [(ngModel)]="libro.disponibles" name="disponibles" #disponibles="ngModel" type="number" placeholder="Cantidad de copias">  
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="agregarCopias()" class="btn btn-success" data-bs-dismiss="modal">Agregar copias</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal para quitar copias-->
+<div class="modal fade" id="quitarCopias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Quitar copias para: {{libro.titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>Cantidad</h1><br><br>
+          <input [(ngModel)]="libro.disponibles" name="disponibles" #disponibles="ngModel" type="number" placeholder="Cantidad de copias">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" (click)="quitarCopias()" class="btn btn-danger" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div> 

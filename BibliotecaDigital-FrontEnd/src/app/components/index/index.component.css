@@ -1,0 +1,43 @@
+html{
+    background-image: url('../../../assets/img/fondo2.jpg');
+    background-size: 100%;
+}
+
+.texto1{
+    font-size: 80px;
+    font-family: serif;
+    padding: 10px;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 3px #196131;
+}
+
+div{
+    margin-top: 220px;
+    margin-left: 650px;
+    background-color: bisque;
+    border-style: ridge;
+    margin-right: 100px;
+    border-width:5px;
+}
+
+.texto2{
+    font-size: 30px;
+    text-align: center;
+}
+
+.texto3{
+    font-size: 40px;
+    padding-left: 30px;
+    font-family:'Times New Roman';
+}
+
+button{
+    margin-left: 280px;
+    font-size: 20px;
+}
+
+div:hover{
+    background-color: #16E7F5;
+    transition: all 1s;
+}

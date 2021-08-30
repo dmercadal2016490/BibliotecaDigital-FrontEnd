@@ -1,0 +1,27 @@
+<html>
+    <p>.</p>
+    <section class="caja">
+        <div class="contenedor">
+            <div class="cajaColumna">
+                <svg><rect></rect></svg>
+                <form #login="ngForm" (ngSubmit)="onSubmit()" class="texto">
+                    <h1 class="texto1">Inicia sesión</h1><br>
+                    <div class="divisionImagen">
+                        <img src="../../../assets/img/user.png">
+                    </div>
+                    <input [(ngModel)]="user.username" name="username" type="text" placeholder="Ingrese su Username"><br><br>
+                    <div class="divisionImagen">
+                        <img src="../../../assets/img/password.png">
+                    </div>
+                    <input [(ngModel)]="user.password" name="password" type="password" placeholder="Ingrese su contraseña"><br><br>
+                    <button type="submit" class="btn btn-primary boton">Iniciar sesion</button><hr>
+                    <div *ngIf="message" class="alert alert-danger" role="alert">
+                        {{message}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>    
+</html>
+
+

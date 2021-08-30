@@ -1,0 +1,15 @@
+.imagen{
+    height: 75px;
+    width: 75px;
+}
+.imagenUser{
+    height: 50px;
+    width: 50px;
+    border-radius: 150px;
+}
+
+.texto1{
+    color: white;
+    font-size: 30px;
+    margin-left: 950px;
+}
