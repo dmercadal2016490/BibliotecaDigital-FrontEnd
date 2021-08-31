@@ -85,4 +85,10 @@ export class RestUserService {
     return this.http.delete(this.uri + 'deleteUser/' + idUser, this.httpOptions)
       .pipe(map(this.extractData));
   }
+
+  updateUser(usuario){
+    let data = JSON.stringify(usuario);
+    return this.http.put(this.uri + 'updateUser/' + usuario._id, data,this.httpOptions)
+      .pipe(map(this.extractData))
+  }
 }

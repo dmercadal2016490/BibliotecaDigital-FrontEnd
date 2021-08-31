@@ -15,7 +15,7 @@ export class SaveUserComponent implements OnInit {
   message2;
   public usuario;
   public token;
-  public optionsRol = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_ADMINCINE'];
+  public optionsRol = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_BIBLIOTECARIO'];
 
   constructor(private restUser:RestUserService, private router:Router) {
     this.user = new User('','','','','','','','','',null,[]);

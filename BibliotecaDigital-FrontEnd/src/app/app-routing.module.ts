@@ -9,6 +9,9 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { LibroMasRentadoComponent } from './components/libro-mas-rentado/libro-mas-rentado.component';
 import { RevistaMasRentadoComponent } from './components/revista-mas-rentado/revista-mas-rentado.component';
 import { UsuarioMasRentaComponent } from './components/usuario-mas-renta/usuario-mas-renta.component';
+import { UserComponent } from './components/user/user.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
 
 const routes: Routes = [
   {path:'', component:IndexComponent},
@@ -20,7 +23,10 @@ const routes: Routes = [
   {path:'listUsers', component:ListUsersComponent},
   {path:'libroMasRentado', component:LibroMasRentadoComponent},
   {path:'revistaMasRentada', component:RevistaMasRentadoComponent},
-  {path:'usuarioMasRenta', component:UsuarioMasRentaComponent}
+  {path:'usuarioMasRenta', component:UsuarioMasRentaComponent},
+  {path:'user', component:UserComponent},
+  {path:'misLibros', component:NotFoundComponent},
+  {path:'**', component:NotFoundComponent}
 ];
 
 @NgModule({

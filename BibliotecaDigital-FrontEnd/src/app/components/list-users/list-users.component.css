@@ -53,3 +53,43 @@ tr:hover td{
     height: 10px;
     width: 10px;
 }
+
+button{
+    margin-left: 5px;
+}
+
+.modal-body{
+    background-image: url('../../../assets/img/space.jpg');
+    background-size: cover;
+}
+
+.modal-header{
+    background-image: url('../../../assets/img/moon.jpg');
+    
+    color: white;
+}
+
+.modal-footer{
+    background-image: url('../../../assets/img/lake.jpg');
+    background-size: cover;
+}
+
+h3{
+    color: bisque;
+    text-align: center;
+}
+
+input{
+    border-style:groove;
+    border-color: skyblue;
+    text-align: center;
+    width: 100%;
+}
+
+select{
+    border-style:groove;
+    border-color: skyblue;
+    text-align: center;
+    width: 100%;
+}
+

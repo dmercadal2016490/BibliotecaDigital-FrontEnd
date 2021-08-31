@@ -21,8 +21,12 @@
                 <td>{{users.email}}</td>
                 <td>{{users.role}}</td>
                 <td>
-                    <button *ngIf="users.username != 'adminpractica'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar" (click)="obetenerData(users)">-</button>
-                    <button class="btn btn-info"><img src="../../../assets/img/pencil.png" class="imagen"></button>
+                    <button *ngIf="users.username != 'adminpractica'" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#borrar" (click)="obetenerData(users)">
+                      <img src="../../../assets/img/trash.png" class="imagen">
+                    </button>
+                    <button *ngIf="users.username != 'adminpractica'" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editar" (click)="obetenerData(users)">
+                      <img src="../../../assets/img/pencil.png" class="imagen">
+                    </button>
                 </td>
             </tr>
         </table>
@@ -49,4 +53,36 @@
         </div>
       </div>
     </div>
+</div>
+
+  <!-- MODAL PARA EDITAR USUARIO -->
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar al usuario {{user.username}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>CUI/Carnet</h3>
+        <input [(ngModel)]="user.cui" name="cui" #cui="ngModel" type="text"><br><br>
+        <h3>Username</h3>
+        <input [(ngModel)]="user.username" name="username" #username="ngModel" type="text"><br><br>
+        <h3>Nombres</h3>
+        <input [(ngModel)]="user.name" name="name" #name="ngModel" type="text"><br><br>
+        <h3>Apellidos</h3>
+        <input [(ngModel)]="user.lastname" name="lastname" #lastname="ngModel" type="text"><br><br>
+        <h3>Email</h3>
+        <input [(ngModel)]="user.email" name="email" #email="ngModel" type="email"><br><br>
+        <h3>Role</h3>
+        <select [(ngModel)]="user.role" name="role" #role="ngModel">
+          <option *ngFor="let option of optionsRol" [value]="option">{{option}}</option>
+      </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refreshPage()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateUser()">Save changes</button>
+      </div>
+    </div>
   </div>
+</div>

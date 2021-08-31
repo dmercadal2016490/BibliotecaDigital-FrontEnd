@@ -11,9 +11,12 @@ export class ListUsersComponent implements OnInit {
   users;
   user:User;
   userSelected:User;
+  admin;
+  message;
+  public optionsRol = ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_BILBIOTECARIO'];
 
   constructor(private restUser:RestUserService) {
-    
+    this.admin = restUser.getUser();
   }
 
   ngOnInit(): void {
@@ -47,6 +50,19 @@ export class ListUsersComponent implements OnInit {
         this.refreshPage();
       }else{
         alert(res.message)
+      }
+    },
+    (error:any) => alert(error.error.message)
+    )
+  }
+
+  updateUser(){
+    this.restUser.updateUser(this.user).subscribe((res:any)=>{
+      if(res.userUpdated){
+        alert(res.message);
+        this.refreshPage();
+      }else{
+        alert(res.message);
       }
     },
     (error:any) => alert(error.error.message)

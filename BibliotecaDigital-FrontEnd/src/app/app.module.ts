@@ -14,6 +14,9 @@ import { ListUsersComponent } from './components/list-users/list-users.component
 import { LibroMasRentadoComponent } from './components/libro-mas-rentado/libro-mas-rentado.component';
 import { RevistaMasRentadoComponent } from './components/revista-mas-rentado/revista-mas-rentado.component';
 import { UsuarioMasRentaComponent } from './components/usuario-mas-renta/usuario-mas-renta.component';
+import { UserComponent } from './components/user/user.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { UsuarioMasRentaComponent } from './components/usuario-mas-renta/usuario
     ListUsersComponent,
     LibroMasRentadoComponent,
     RevistaMasRentadoComponent,
-    UsuarioMasRentaComponent
+    UsuarioMasRentaComponent,
+    UserComponent,
+    NotFoundComponent,
+    MisLibrosComponent
   ],
   imports: [
     BrowserModule,

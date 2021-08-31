@@ -1,0 +1,103 @@
+<html>
+    <br><br>
+    <a data-bs-toggle="modal" data-bs-target="#myModal"><img *ngIf="user.image == null" src="../../../assets/img/user.png" alt="Imagen de usuario default"></a>
+    <a data-bs-toggle="modal" data-bs-target="#myModal"><img *ngIf="user.image" id="imgUser" src="{{uri+'getImage/'+user.image}}" alt="Imagen de usuario"></a>
+    <div class="div"><br><br><br><br><br>
+        <h1 class="texto1">CUI/Carnet</h1>
+        <p class="texto2">{{user.cui}}</p><br>
+        <h1 class="texto1">Nombre de usuario</h1>
+        <p class="texto2">{{user.username}}</p><br>
+        <h1 class="texto1">Nombres</h1>
+        <p class="texto2">{{user.name}}</p><br>
+        <h1 class="texto1">Apellidos</h1>
+        <p class="texto2">{{user.lastname}}</p><br>
+        <h1 class="texto1">Correo electronico</h1>
+        <p class="texto2">{{user.email}}</p><br>
+        <button class="btn btn-danger col-lg-5 mx-4 botones" data-bs-toggle="modal" data-bs-target="#borrar">Eliminar Perfil</button>
+        <button class="btn btn-warning col-lg-5 mx-4 botones" data-bs-toggle="modal" data-bs-target="#editar">Actualizar Perfil</button>
+    </div><br>
+</html>
+
+<!-- MODAL PARA SUBIR IMAGEN DE USUARIO -->
+<div class="modal fade" id="myModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">User image</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Elije tu imagen</h3>
+          <form #formUpload="ngForm">
+            <label for="inputImage"></label>
+            <input type="file" name="image" id="inputImage" (change)="fileChange($event)" required>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="uploadImage()">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PARA ELIMINAR USUARIO -->
+  <div class="modal fade" id="borrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Peligro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>¿Seguro que quieres eliminar a {{user.username}}?</h3>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="deleteUser()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- MODAL PARA EDITAR USUARIO -->
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar al usuario {{user.username}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="division">
+        <p class="texto3">CUI/Carnet</p>
+        <input [(ngModel)]="user.cui" name="cui" #cui="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+        <p class="texto3">Username</p>
+        <input [(ngModel)]="user.username" name="username" #username="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+        <p class="texto3">Nombres</p>
+        <input [(ngModel)]="user.name" name="name" #name="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+        <p class="texto3">Apellidos</p>
+        <input [(ngModel)]="user.lastname" name="lastname" #lastname="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+        <p class="texto3">Email</p>
+        <input [(ngModel)]="user.email" name="email" #email="ngModel" type="email" class="input">
+        </div><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refreshPage()">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateUser()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

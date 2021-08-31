@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
       if(res.quitado){
         alert(res.message);
         localStorage.setItem('libroSelected', JSON.stringify(res.quitado));
-        this.refreshPage();
+        
       }else{
         alert(res.message);
         this.refreshPage();

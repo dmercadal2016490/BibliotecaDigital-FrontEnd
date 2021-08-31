@@ -1,0 +1,63 @@
+html{
+    background-color: #0c0f1d;
+    min-height: 100vh;
+}
+
+.div{
+    background-color: wheat;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 100px;
+    border-style:outset;
+    border-width: 3px;
+}
+
+img{
+    border-radius: 350px;
+    height: 220px;
+    width: 220px;
+    float: left;
+    margin-left: 600px;
+}
+
+.texto1{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.texto2{
+    text-align: center;
+    background-color: white;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-style:groove;
+    border-radius: 50px;
+    font-size: 30px;
+    font-family: monospace;
+}
+
+.division{
+    background-color:white;
+    border-style: ridge;
+}
+
+.texto3{
+    color: silver;
+    font-size: 20px;
+    padding-left: 10px;
+    margin: 0;
+}
+
+.input{
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    margin-left: 5px;
+    width: 450px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.modal-body{
+    background-color:seashell;
+}
