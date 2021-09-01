@@ -25,7 +25,7 @@ const routes: Routes = [
   {path:'revistaMasRentada', component:RevistaMasRentadoComponent},
   {path:'usuarioMasRenta', component:UsuarioMasRentaComponent},
   {path:'user', component:UserComponent},
-  {path:'misLibros', component:NotFoundComponent},
+  {path:'misLibros', component:MisLibrosComponent},
   {path:'**', component:NotFoundComponent}
 ];
 

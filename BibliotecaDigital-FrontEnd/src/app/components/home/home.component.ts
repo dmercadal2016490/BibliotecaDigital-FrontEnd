@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
+import { RestReservacionService } from 'src/app/services/restReservacion/rest-reservacion.service';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { Libro } from 'src/app/models/libro';
 import { CONNECTION } from 'src/app/services/global';
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
   public filesToUpload:Array<File>;
   uri;
 
-  constructor(private restLibro: RestLibroService, private restUser:RestUserService, private uploadImage: UploadImageService) {
+  constructor(private restLibro: RestLibroService, private restUser:RestUserService,
+              private uploadImage: UploadImageService, private restReservacion:RestReservacionService) {
     this.user = this.restUser.getUser();
     this.token = this.restUser.getToken();
     this.uri = CONNECTION.URI;
@@ -104,6 +106,22 @@ export class HomeComponent implements OnInit {
   fileChange(fileInput){
     this.filesToUpload = <Array<File>>fileInput.target.files;
     console.log(this.filesToUpload)
+  }
+
+  reservar(){
+    this.restReservacion.reservar(this.user._id, this.libro._id).subscribe((res:any)=>{
+      if(res.aumento){
+        delete res.aumento.password;
+        alert(res.message);
+        this.user = res.aumento;
+        localStorage.setItem('user', JSON.stringify(res.aumento));
+        this.refreshPage();
+      }else{
+        alert(res.message)
+      }
+    },
+    (error:any) => alert(error.error.message)
+    )
   }
 
 }

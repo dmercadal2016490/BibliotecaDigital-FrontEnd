@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class RestUserService {
+export class RestReservacionService {
   public uri:string
   public httpOptions ={
     headers: new HttpHeaders({
@@ -53,51 +53,12 @@ export class RestUserService {
     return this.token;
   }
 
-
-  login(user, token){
-    user.gettoken = token;
-    let params = JSON.stringify(user);
-    return this.http.post(this.uri + 'login' , params, this.httpOptions)
-      .pipe(map(this.extractData));
-  }
-
-  saveUser(user, idAdmin){
-    let params = JSON.stringify(user);
+  reservar(idUser, idLibro){
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': this.getToken()
-    });
-    return this.http.post(this.uri + 'saveUser/' + idAdmin, params, {headers:headers})
-      .pipe(map(this.extractData));
-  }
-
-  getUsers(){
-    return this.http.get(this.uri + 'getUsers', this.httpOptions)
-      .pipe(map(this.extractData))
-  }
-
-  usuarioMasRenta(){
-    return this.http.get(this.uri + 'usuarioMasReservas', this.httpOptions)
-      .pipe(map(this.extractData))
-  }
-
-  deleteUser(idUser){
-    return this.http.delete(this.uri + 'deleteUser/' + idUser, this.httpOptions)
-      .pipe(map(this.extractData));
-  }
-
-  updateUser(usuario){
-    let data = JSON.stringify(usuario);
-    return this.http.put(this.uri + 'updateUser/' + usuario._id, data,this.httpOptions)
-      .pipe(map(this.extractData))
-  }
-  
-  misLibros(idUser){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': this.getToken()
-    });
-    return this.http.get(this.uri + 'getMylibros/'+ idUser, {headers:headers})
+    })
+    return this.http.put(this.uri + idUser + '/reservar/' + idLibro,null,{headers:headers})
       .pipe(map(this.extractData))
   }
 }

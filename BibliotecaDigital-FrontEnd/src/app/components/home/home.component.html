@@ -35,7 +35,7 @@
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imagen">Subir Imagen</button>
-          <button type="button" class="btn btn-primary" *ngIf="libro.disponibles > 0">Reservar</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservar" *ngIf="libro.disponibles > 0">Reservar</button>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Imagen de cine para: {{libro.titulo}}</h5>
+        <h5 class="modal-title" id="myModalLabel">Imagen de libro para: {{libro.titulo}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -104,6 +104,25 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="subirImagen()">Upload</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL PARA RESERVAR-->
+<div class="modal fade" id="reservar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reservar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2 class="texto1">¿Quires reservar una copia de: {{libro.titulo}}?</h2>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="reservar()">Reservar</button>
       </div>
     </div>
   </div>

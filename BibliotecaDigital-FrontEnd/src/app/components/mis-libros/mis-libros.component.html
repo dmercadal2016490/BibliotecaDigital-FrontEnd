@@ -1,1 +1,46 @@
-<p>mis-libros works!</p>
+<html>
+<p class="separacion">.</p>
+<section class="caja">
+    <div class="contenedor">
+        <div class="cajaColumna">
+            <svg><rect></rect></svg>
+            <div class="texto">
+                <h1 class="texto1">Libros Rentados: </h1>
+                <h1 class="texto2">{{user.librosRentados}}</h1>
+            </div>
+        </div>
+    </div>
+</section>    
+<div class="card text-center" id="cards" style="width: 11rem;" *ngFor="let miLibro of misLibros">
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(miLibro)"><img *ngIf="miLibro.image == null" src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
+    <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(miLibro)"><img *ngIf="miLibro.image" src="{{uri+'getImageLibro/'+miLibro.image}}" class="imegenLibro"></a>
+</div>
+</html>
+
+
+<!-- Modal de libro -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{miLibro.titulo}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <img *ngIf="miLibro.image == null" src="../../../assets/img/portada.jpg" class="imagenModal">
+        <img *ngIf="miLibro.image" src="{{uri+'getImageLibro/'+miLibro.image}}" class="imagenModal">
+        <p class="bibliografia">{{miLibro.bibliografia}}</p>
+        <p class="textoModal">Autor: {{miLibro.autor}}</p>
+        <p class="textoModal">Descripción: {{miLibro.descripcion}}</p>
+        <p class="textoModal">{{miLibro.palabrasClaves}}</p>
+        <p class="textoModal">{{miLibro.temas}}</p>
+        <p class="textoModal">Frecuencia: {{miLibro.frecuencia}}</p>
+        <p class="textoModal">Ejemplares: {{miLibro.ejemplares}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Reservar</button>
+        </div>
+      </div>
+    </div>
+  </div>
