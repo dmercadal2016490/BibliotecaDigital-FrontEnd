@@ -18,11 +18,15 @@ html{
 .imegenDefecto{
     height: 200px;
     width: 140px;
+    border-style: outset;
+    border-width: 3px;
 }
 
 .imegenLibro{
     height: 200px;
     width: 140px;
+    border-style: outset;
+    border-width: 3px;
 }
 
 .imagenModal{

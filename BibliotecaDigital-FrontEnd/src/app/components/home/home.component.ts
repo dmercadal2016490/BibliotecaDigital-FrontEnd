@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     this.libro;
     this.libroSelected = JSON.parse(localStorage.getItem('libroSelected'));
     this.libro = new Libro('','','','','','','','','',null,'',null,null,null);
+    this.user = this.restUser.getUser();
   }
 
   verLibros(){

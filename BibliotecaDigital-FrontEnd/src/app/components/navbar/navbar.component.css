@@ -13,11 +13,37 @@
 .texto1{
     color: white;
     font-size: 30px;
-    margin-left: 950px;
+    margin-left: 930px;
 }
 
 .textoAdmin{
     color: white;
     font-size: 30px;
-    margin-left: 850px;
+    margin-left: 830px;
+}
+
+.imagenModal{
+    height: 240px;
+    width: 180px;
+    float: left;
+}
+
+.modal-header{
+    background-color: #0c0f1d;
+    text-align: center;
+}
+
+.modal-title{
+    color:cornsilk;
+    font-family: Candara;
+}
+
+.btn-close{
+    background-color: white;
+}
+
+.texto2{
+    padding-left: 10px;
+    font-size: 20px;
+    float: left;
 }

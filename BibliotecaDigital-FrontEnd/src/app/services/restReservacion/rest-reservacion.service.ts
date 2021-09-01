@@ -61,4 +61,13 @@ export class RestReservacionService {
     return this.http.put(this.uri + idUser + '/reservar/' + idLibro,null,{headers:headers})
       .pipe(map(this.extractData))
   }
+
+  devolver(idUser,idLibro){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.put(this.uri + idUser + '/devolver/' + idLibro,null,{headers:headers})
+      .pipe(map(this.extractData))
+  }
 }

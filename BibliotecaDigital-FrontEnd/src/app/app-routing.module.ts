@@ -13,19 +13,25 @@ import { UserComponent } from './components/user/user.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
 
+
+//Guards
+import { LoggedGuardGuard } from './guards/logged-guard.guard';
+import { LoggedoutGuardGuard } from './guards/logged-out-guard.guard';
+import { AdminGuardGuard } from './guards/admin-guard.guard';
+
 const routes: Routes = [
   {path:'', component:IndexComponent},
-  {path:'index', component: IndexComponent},
+  {path:'index', canActivate:[LoggedoutGuardGuard],component: IndexComponent},
   {path:'navbar', component: NavbarComponent},
-  {path:'login', component:LoginComponent},
-  {path:'home', component:HomeComponent},
-  {path:'saveUser', component:SaveUserComponent},
-  {path:'listUsers', component:ListUsersComponent},
-  {path:'libroMasRentado', component:LibroMasRentadoComponent},
-  {path:'revistaMasRentada', component:RevistaMasRentadoComponent},
-  {path:'usuarioMasRenta', component:UsuarioMasRentaComponent},
-  {path:'user', component:UserComponent},
-  {path:'misLibros', component:MisLibrosComponent},
+  {path:'login',canActivate:[LoggedoutGuardGuard], component:LoginComponent},
+  {path:'home',canActivate:[LoggedGuardGuard], component:HomeComponent},
+  {path:'saveUser',canActivate:[AdminGuardGuard], component:SaveUserComponent},
+  {path:'listUsers',canActivate:[AdminGuardGuard], component:ListUsersComponent},
+  {path:'libroMasRentado',canActivate:[AdminGuardGuard], component:LibroMasRentadoComponent},
+  {path:'revistaMasRentada',canActivate:[AdminGuardGuard], component:RevistaMasRentadoComponent},
+  {path:'usuarioMasRenta',canActivate:[AdminGuardGuard], component:UsuarioMasRentaComponent},
+  {path:'user',canActivate:[LoggedGuardGuard], component:UserComponent},
+  {path:'misLibros',canActivate:[LoggedGuardGuard], component:MisLibrosComponent},
   {path:'**', component:NotFoundComponent}
 ];
 

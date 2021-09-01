@@ -29,13 +29,16 @@
         <div *ngIf="libro.disponibles == 0" class="alert alert-danger" role="alert">
             No hay copias de este libro para reservar
         </div>
+        <div *ngIf="user.librosRentados == 10" class="alert alert-danger" role="alert">
+          Ya no puedes reservar mas libros
+        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imagen">Subir Imagen</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservar" *ngIf="libro.disponibles > 0">Reservar</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservar" *ngIf="(libro.disponibles > 0 && user.librosRentados < 10)">Reservar</button>
         </div>
       </div>
     </div>
