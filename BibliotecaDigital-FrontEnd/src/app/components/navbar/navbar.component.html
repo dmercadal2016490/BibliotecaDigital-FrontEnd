@@ -25,10 +25,12 @@
                       Más opciones
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" *ngIf="user.role != 'ROLE_USER'" routerLink="/addLibro">Guardar un libro</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/saveUser">Save User</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/listUsers">Ver usuarios</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/libroMasRentado">Libro mas rentado</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/revistaMasRentada">Revista mas rentada</a></li>
+                      <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/librosAgotados">Mercancia agotada</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/usuarioMasRenta">Usuario con mas rentas</a></li>
                       <li><a class="dropdown-item" routerLink="/user">Mi Perfil</a></li>
                       <li><hr class="dropdown-divider"></li>

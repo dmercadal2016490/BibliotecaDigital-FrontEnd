@@ -1,0 +1,58 @@
+<html>
+    <p>.</p>
+    <form class="formulario" #addLibro="ngForm" (ngSubmit)="onSubmit(addLibro)">
+        <img src="../../../assets/img/addBook.png">
+        <h1 class="texto1">Guardar Libro</h1><br>
+        <div class="division">
+            <p class="texto">Bibliografía</p>
+            <select id="selectLibro" [(ngModel)]="libro.bibliografia" name="bibliografia">
+                <option *ngFor="let option of optionsRol" [value]="option">{{option}}</option>
+            </select>
+        </div><br>
+        <div class="division">
+            <p class="texto">Titulo</p>
+            <input [(ngModel)]="libro.titulo" name="titulo" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Autor</p>
+            <input [(ngModel)]="libro.autor" name="autor" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Descripción</p>
+            <input [(ngModel)]="libro.descripcion" name="descripcion" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Edición</p>
+            <input [(ngModel)]="libro.edicion" name="edicion" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Palabras claves</p>
+            <input [(ngModel)]="libro.palabrasClaves" name="palabrasClaves" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Temas</p>
+            <input [(ngModel)]="libro.temas" name="temas" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Copias en el mundo</p>
+            <input [(ngModel)]="libro.copias" name="copias" type="number">
+        </div><br>
+        <div class="alert alert-warning" role="alert">
+            Si guardas un Libro deja estos campos vacios
+        </div><hr>
+        <div class="division">
+            <p class="texto">Frecuencia</p>
+            <input [(ngModel)]="libro.frecuencia" name="frecuencia" type="text">
+        </div><br>
+        <div class="division">
+            <p class="texto">Ejemplares</p>
+            <input [(ngModel)]="libro.ejemplares" name="ejemplares" type="number">
+        </div><br>
+        <button class="btn btn-outline-success" type="submit">Agregar Libro</button><br>
+        <button class="btn btn-outline-secondary btn-lg" routerLink="/home">Cancelar</button><hr>
+        <div *ngIf="message" class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    </form><br>
+    <h2 >&copy;Mercadal</h2><br>
+</html>

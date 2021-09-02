@@ -89,4 +89,28 @@ export class RestLibroService {
     return this.http.get(this.uri + 'RevistaMasRentada' , this.httpOptions)
       .pipe(map(this.extractData))
   }
+
+  librosAgotados(){
+    return this.http.get(this.uri + 'librosAgotados' , this.httpOptions)
+      .pipe(map(this.extractData))
+  }
+
+  addLibro(idUser, libro){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    let params = JSON.stringify(libro);
+    return this.http.post(this.uri + 'addLibro/' + idUser, params, {headers:headers})
+      .pipe(map(this.extractData));
+  }
+
+  deleteLibro(idUser, idLibro){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.delete(this.uri + idUser + '/deleteLibro/'+ idLibro, {headers:headers})
+      .pipe(map(this.extractData))
+  }
 }

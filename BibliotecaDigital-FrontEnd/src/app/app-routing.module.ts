@@ -12,6 +12,8 @@ import { UsuarioMasRentaComponent } from './components/usuario-mas-renta/usuario
 import { UserComponent } from './components/user/user.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
+import { LibrosAgotadosComponent } from './components/libros-agotados/libros-agotados.component';
+import { AddLibroComponent } from './components/add-libro/add-libro.component';
 
 
 //Guards
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'usuarioMasRenta',canActivate:[AdminGuardGuard], component:UsuarioMasRentaComponent},
   {path:'user',canActivate:[LoggedGuardGuard], component:UserComponent},
   {path:'misLibros',canActivate:[LoggedGuardGuard], component:MisLibrosComponent},
+  {path:'librosAgotados',canActivate:[AdminGuardGuard], component:LibrosAgotadosComponent},
+  {path:'addLibro', component:AddLibroComponent},
   {path:'**', component:NotFoundComponent}
 ];
 

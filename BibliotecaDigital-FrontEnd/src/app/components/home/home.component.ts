@@ -125,4 +125,18 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  deleteLibro(){
+    this.restLibro.deleteLibro(this.user._id,this.libro._id).subscribe((res:any)=>{
+      if(res.libroDeleted){
+        alert(res.message);
+        this.refreshPage();
+      }else{
+        alert(res.message);
+        this.refreshPage();
+      }
+    },
+    (error:any) => alert(error.error.message)
+    )
+  }
+
 }
