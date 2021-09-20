@@ -1,6 +1,5 @@
 <html>
-
-<div class="card text-center" *ngFor="let libros of libros">
+<div class="card text-center" *ngFor="let libros of libros | search:search">
     <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img *ngIf="libros.image == null" src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
     <a data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="obtenerData(libros)"><img *ngIf="libros.image" src="{{uri+'getImageLibro/'+libros.image}}" class="imegenLibro"></a>
 </div>
@@ -35,6 +34,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar">Editar Libro</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar">Eliminar Libro</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
@@ -132,7 +132,7 @@
   </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal para eliminar-->
 <div class="modal fade" id="eliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -146,6 +146,61 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-danger" (click)="deleteLibro()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para editar-->
+<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header cabecera">
+        <h5 class="modal-title" id="exampleModalLabel">Editar libro: {{libro.titulo}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="division">
+          <p class="texto3">Titulo</p>
+          <input [(ngModel)]="libro.titulo" name="titulo" #titulo="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Bibliografia</p>
+          <select id="selectLibro" [(ngModel)]="libro.bibliografia" name="bibliografia" #bibliografia="ngModel" class="input">
+            <option *ngFor="let option of optionsRol" [value]="option">{{option}}</option>
+        </select>
+        </div><br>
+        <div class="division">
+          <p class="texto3">Autor</p>
+          <input [(ngModel)]="libro.autor" name="autor" #autor="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Descripción</p>
+          <input [(ngModel)]="libro.descripcion" name="descripcion" #descripcion="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Palabras Claves</p>
+          <input [(ngModel)]="libro.palabrasClaves" name="palabrasClaves" #palabrasClaves="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Temas</p>
+          <input [(ngModel)]="libro.temas" name="temas" #temas="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Frecuencia</p>
+          <input [(ngModel)]="libro.frecuencia" name="frecuencia" #frecuencia="ngModel" type="text" class="input">
+        </div><br>
+        <div class="division">
+          <p class="texto3">Ejemplares</p>
+          <input [(ngModel)]="libro.ejemplares" name="ejemplares" #ejemplares="ngModel" type="number" class="input">
+        </div><hr>
+        <div *ngIf="message" class="alert alert-danger" role="alert">
+          {{message}}
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="refreshPage()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateLibro()">Guardar</button>
       </div>
     </div>
   </div>

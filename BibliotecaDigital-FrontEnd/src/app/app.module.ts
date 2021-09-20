@@ -19,6 +19,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
 import { LibrosAgotadosComponent } from './components/libros-agotados/libros-agotados.component';
 import { AddLibroComponent } from './components/add-libro/add-libro.component';
+import { SearchPipe } from './pipes/search.pipe';
+import { SearchLibroComponent } from './components/search-libro/search-libro.component';
+import { HistorialComponent } from './components/historial/historial.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { AddLibroComponent } from './components/add-libro/add-libro.component';
     NotFoundComponent,
     MisLibrosComponent,
     LibrosAgotadosComponent,
-    AddLibroComponent
+    AddLibroComponent,
+    SearchPipe,
+    SearchLibroComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,

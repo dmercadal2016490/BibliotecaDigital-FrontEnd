@@ -70,4 +70,13 @@ export class RestReservacionService {
     return this.http.put(this.uri + idUser + '/devolver/' + idLibro,null,{headers:headers})
       .pipe(map(this.extractData))
   }
+
+  limpiarHistorial(idUser){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    return this.http.put(this.uri +'cleanHistoria/' +idUser, null,{headers:headers})
+      .pipe(map(this.extractData))
+  }
 }

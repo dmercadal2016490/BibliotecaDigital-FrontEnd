@@ -1,0 +1,143 @@
+html{
+    background-color: #0c0f1d;
+    min-height: 100vh;
+}
+
+.card{
+    display: inline-block;
+    height: 150px;
+    width: 200px;
+    background: transparent;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-style: none;
+    margin-bottom: 80px;
+}
+
+.imegenDefecto{
+    height: 200px;
+    width: 140px;
+    border-style: outset;
+    border-width: 3px;
+}
+
+.imegenLibro{
+    height: 200px;
+    width: 140px;
+    border-style: outset;
+    border-width: 3px;
+}
+
+.imagenModal{
+    height: 180px;
+    width: 130px;
+    float: left;
+}
+
+.textoModal{
+    color: white;
+    font-size: 20px;
+    padding-left: 150px;
+}
+
+
+.bibliografia{
+    color: white;
+    font-size: 20px;
+    background-color: blue;
+    margin-left: 150px;
+    padding-left: 10px;
+    margin-right: 220px;
+}
+
+.division{
+    background-color: #D1B897;
+    border-style:inset;
+    margin-left: 40px;
+    border-color: turquoise;
+    margin-right: 40px;
+}
+
+.separacion{
+     margin: 0;
+}
+
+.texto1{
+    font-family: Candara;
+    color: snow;
+    
+    text-align: center;
+}
+
+.texto2{
+    text-align: center;
+    font-family: Candara;
+    font-size: 50px;
+}
+
+.contenedor{
+    margin: auto;
+    width: 100%;
+}
+
+.cajaColumna{
+    color:white;
+    background: #0c0f1d;
+    position: relative;
+    
+    width: 100%;
+    height: 200px;
+    margin: 10px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.cajaColumna .texto{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px solid #1ACED4;
+    padding: 30px;
+}
+
+svg,rect{
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+}
+
+rect{
+    stroke: #EE2B2B;
+    /*stroke: transparent;*/
+    stroke-width: 4;
+    stroke-dasharray: 400;
+    animation: animate 4s linear infinite
+}
+
+.caja .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@keyframes animate{
+    0%{
+        stroke-dashoffset: 800;
+    }
+
+    100%{
+        stroke-dashoffset: 0;
+    }
+}
+
+.centro{
+    text-align: center;
+}

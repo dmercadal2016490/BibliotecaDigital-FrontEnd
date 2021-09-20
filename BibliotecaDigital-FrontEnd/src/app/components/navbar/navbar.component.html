@@ -32,26 +32,19 @@
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/revistaMasRentada">Revista mas rentada</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/librosAgotados">Mercancia agotada</a></li>
                       <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_ADMIN'" routerLink="/usuarioMasRenta">Usuario con mas rentas</a></li>
+                      <li><a class="dropdown-item" *ngIf="user.role == 'ROLE_USER'" routerLink="/historial">Historial</a></li>
                       <li><a class="dropdown-item" routerLink="/user">Mi Perfil</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" (click)="logOut()">Cerrar Sesión</a></li>
                     </ul>
                 </li>
-                <ul class="navbar-nav ml-auto" *ngIf="token != null">
-                  <li class="nav-item" *ngIf="user.username !='adminpractica'">
-                      <a class="nav-link texto1" routerLink="/user">{{user.username}}</a>
-                  </li>
-                  <li class="nav-item" *ngIf="user.username =='adminpractica'">
-                    <a class="nav-link textoAdmin" routerLink="/user">{{user.username}}</a>
-                  </li>
-                  <li>
-                    <img *ngIf="user.image == null" src="../../../assets/img/user.png" class="imagenUser" alt="Imagen de usuario default">
-                    <img *ngIf="user.image" id="imgUser" src="{{uri+'getImage/'+user.image}}" class="imagenUser" alt="Imagen de usuario">
-                  </li>
-              </ul>
             </ul>
         </div>
     </div>
+    <form *ngIf="token != null || token != undefined" class="form-inline my-2 my-lg-0" #search="ngForm" (ngSubmit)="onSubmit(search)">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="libroBuscar.titulo" name="search" #search="ngModel">
+      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 </nav>
 
 <!-- Modal acerca de -->

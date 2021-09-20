@@ -1,0 +1,17 @@
+<html>
+<p class="separacion">.</p>
+<section class="caja">
+    <div class="contenedor">
+        <div class="cajaColumna">
+            <svg><rect></rect></svg>
+            <div class="texto">
+                <h1 class="texto1">Historial</h1>
+            </div>
+        </div>
+    </div>
+</section>    
+<div class="card text-center" id="cards" style="width: 11rem;" *ngFor="let miHistorial of miHistoriales">
+    <a><img *ngIf="miHistorial.image == null" src="../../../assets/img/portada.jpg" class="imegenDefecto"></a>
+    <a><img *ngIf="miHistorial.image" src="{{uri+'getImageLibro/'+miHistorial.image}}" class="imegenLibro"></a>
+</div>
+</html>

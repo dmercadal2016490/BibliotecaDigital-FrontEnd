@@ -14,6 +14,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MisLibrosComponent } from './components/mis-libros/mis-libros.component';
 import { LibrosAgotadosComponent } from './components/libros-agotados/libros-agotados.component';
 import { AddLibroComponent } from './components/add-libro/add-libro.component';
+import { HistorialComponent } from './components/historial/historial.component';
 
 
 //Guards
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path:'misLibros',canActivate:[LoggedGuardGuard], component:MisLibrosComponent},
   {path:'librosAgotados',canActivate:[AdminGuardGuard], component:LibrosAgotadosComponent},
   {path:'addLibro', component:AddLibroComponent},
+  {path:'historial', canActivate:[LoggedGuardGuard], component:HistorialComponent},
   {path:'**', component:NotFoundComponent}
 ];
 

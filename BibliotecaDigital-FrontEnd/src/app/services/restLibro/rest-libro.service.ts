@@ -113,4 +113,21 @@ export class RestLibroService {
     return this.http.delete(this.uri + idUser + '/deleteLibro/'+ idLibro, {headers:headers})
       .pipe(map(this.extractData))
   }
+
+  updateLibro(idUser, libro){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': this.getToken()
+    })
+    let params = JSON.stringify(libro);
+    return this.http.put(this.uri + idUser + '/updateLibro/' + libro._id, params, {headers:headers})
+      .pipe(map(this.extractData));
+  }
+
+  search(libroBuscar){
+    let params = JSON.stringify(libroBuscar);
+
+    return this.http.put(this.uri +'search', params, this.httpOptions)
+      .pipe(map(this.extractData))
+  }
 }

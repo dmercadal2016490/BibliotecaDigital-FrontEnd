@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
   libroSelected:Libro;
   public filesToUpload:Array<File>;
   uri;
+  message;
+  public optionsRol = ['Libro', 'Revista'];
+  search;
+  librosNuscar:[]
 
   constructor(private restLibro: RestLibroService, private restUser:RestUserService,
               private uploadImage: UploadImageService, private restReservacion:RestReservacionService) {
@@ -40,7 +44,9 @@ export class HomeComponent implements OnInit {
     this.restLibro.getLibros().subscribe((res:any)=>{
       if(res){
         this.libros = res.libros;
+        this.librosNuscar = res.libros;
         localStorage.setItem('libros', this.libros);
+        localStorage.setItem('librosBuscar', JSON.stringify(this.librosNuscar))
         console.log(this.libros);
       }else{
         alert(res.message);
@@ -73,7 +79,7 @@ export class HomeComponent implements OnInit {
       if(res.quitado){
         alert(res.message);
         localStorage.setItem('libroSelected', JSON.stringify(res.quitado));
-        
+        this.refreshPage();
       }else{
         alert(res.message);
         this.refreshPage();
@@ -111,11 +117,11 @@ export class HomeComponent implements OnInit {
 
   reservar(){
     this.restReservacion.reservar(this.user._id, this.libro._id).subscribe((res:any)=>{
-      if(res.aumento){
-        delete res.aumento.password;
+      if(res.pushed){
+        delete res.pushed.password;
         alert(res.message);
-        this.user = res.aumento;
-        localStorage.setItem('user', JSON.stringify(res.aumento));
+        this.user = res.pushed;
+        localStorage.setItem('user', JSON.stringify(res.pushed));
         this.refreshPage();
       }else{
         alert(res.message)
@@ -136,6 +142,19 @@ export class HomeComponent implements OnInit {
       }
     },
     (error:any) => alert(error.error.message)
+    )
+  }
+
+  updateLibro(){
+    this.restLibro.updateLibro(this.user._id, this.libro).subscribe((res:any)=>{
+      if(res.libroUpdated){
+        alert(res.message);
+        localStorage.setItem('libroSelected', JSON.stringify(res.libroUpdated));
+      }else{
+        this.message = res.message;
+      }
+    },
+    (error:any) => this.message = error.error.message
     )
   }
 
