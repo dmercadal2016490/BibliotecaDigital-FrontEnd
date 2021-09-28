@@ -48,3 +48,9 @@ tr:hover td{
     text-align: center;
     color: #ddd;
 }
+
+button{
+    background-color: transparent;
+    float: left;
+    border-color: transparent;
+}

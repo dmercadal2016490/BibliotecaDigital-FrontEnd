@@ -86,8 +86,18 @@ export class RestLibroService {
       .pipe(map(this.extractData))
   }
 
+  libroMenosRentado(){
+    return this.http.get(this.uri + 'libroMenosRentado' , this.httpOptions)
+      .pipe(map(this.extractData))
+  }
+
   revistaMasRentada(){
     return this.http.get(this.uri + 'RevistaMasRentada' , this.httpOptions)
+      .pipe(map(this.extractData))
+  }
+
+  revistaMenosRentada(){
+    return this.http.get(this.uri + 'RevistaMenosRentada' , this.httpOptions)
       .pipe(map(this.extractData))
   }
 

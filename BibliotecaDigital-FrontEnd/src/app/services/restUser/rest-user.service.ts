@@ -81,6 +81,11 @@ export class RestUserService {
       .pipe(map(this.extractData))
   }
 
+  usuarioMenosRenta(){
+    return this.http.get(this.uri + 'usuarioMenosReservas', this.httpOptions)
+      .pipe(map(this.extractData))
+  }
+
   deleteUser(idUser){
     return this.http.delete(this.uri + 'deleteUser/' + idUser, this.httpOptions)
       .pipe(map(this.extractData));

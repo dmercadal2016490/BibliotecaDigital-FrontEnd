@@ -165,7 +165,7 @@ export class HomeComponent implements OnInit {
 
   deleteLibro(){
     this.restLibro.deleteLibro(this.user._id,this.libro._id).subscribe((res:any)=>{
-      if(res.libroDeleted){
+      if(res.libroFind){
         Swal.fire(
           'Eliminado',
           res.message,
@@ -173,8 +173,8 @@ export class HomeComponent implements OnInit {
         ).then(this.refreshPage)
       }else{
         Swal.fire(
-          'Eliminado',
           res.message,
+          '',
           'warning'
         ).then(this.refreshPage)
       }
@@ -198,6 +198,7 @@ export class HomeComponent implements OnInit {
           res.message,
           'error'
         )
+        this.libro = JSON.parse(localStorage.getItem('libroSelected'));
       }
     },
     (error:any) => alert(error.error.message)

@@ -53,4 +53,38 @@ export class LibroMasRentadoComponent implements OnInit {
     this.compras = this.restLibro.getConsulta().compras
   }
 
+  libroMas(){
+    this.restLibro.libroMasRentado().subscribe((res:any)=>{
+      if(res.libroFound){
+        this.data = res.libroFound;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        Swal.fire(
+          'Sin resultados',
+          res.message,
+          'warning',
+        )
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
+  libroMenos(){
+    this.restLibro.libroMenosRentado().subscribe((res:any)=>{
+      if(res.libroFound){
+        this.data = res.libroFound;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        Swal.fire(
+          'Sin resultados',
+          res.message,
+          'warning',
+        )
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
 }

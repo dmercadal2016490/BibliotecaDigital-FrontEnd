@@ -35,4 +35,30 @@ export class UsuarioMasRentaComponent implements OnInit {
     )
   }
 
+  usuarioMas(){
+    this.restUser.usuarioMasRenta().subscribe((res:any)=>{
+      if(res.userFind){
+        this.data = res.userFind;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        alert(res.message);
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
+  usuarioMenos(){
+    this.restUser.usuarioMenosRenta().subscribe((res:any)=>{
+      if(res.userFind){
+        this.data = res.userFind;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        alert(res.message);
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
 }

@@ -35,4 +35,30 @@ export class RevistaMasRentadoComponent implements OnInit {
     )
   }
 
+  revistaMas(){
+    this.restLibro.revistaMasRentada().subscribe((res:any)=>{
+      if(res.revistaFound){
+        this.data = res.revistaFound;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        alert(res.message);
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
+  revistaMenos(){
+    this.restLibro.revistaMenosRentada().subscribe((res:any)=>{
+      if(res.revistaFound){
+        this.data = res.revistaFound;
+        localStorage.setItem('consulta', JSON.stringify(this.data));
+      }else{
+        alert(res.message);
+      }
+    },
+    (error:any) => alert('Error al cargar')
+    )
+  }
+
 }
