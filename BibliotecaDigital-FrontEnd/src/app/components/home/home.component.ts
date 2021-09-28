@@ -128,7 +128,11 @@ export class HomeComponent implements OnInit {
           )
           /*this.refreshPage();*/
         }else{
-          alert('imagen subida')
+          Swal.fire(
+            'Error',
+            res.message,
+            'error',
+          )
         }
       },
       error => console.log(<any>error)

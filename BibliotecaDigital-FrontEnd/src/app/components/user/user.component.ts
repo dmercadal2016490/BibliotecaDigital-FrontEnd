@@ -38,7 +38,11 @@ export class UserComponent implements OnInit {
             'success',
           )
         }else{
-          alert(res.message)
+          Swal.fire(
+            'Error',
+            res.message,
+            'error',
+          )
         }
       })
   }
