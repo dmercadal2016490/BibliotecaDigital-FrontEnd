@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-libro-mas-rentado',
@@ -8,6 +10,9 @@ import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service'
 })
 export class LibroMasRentadoComponent implements OnInit {
   data;
+  titulo;
+  compras;
+
 
   constructor(private restLibro:RestLibroService) { }
 
@@ -27,6 +32,15 @@ export class LibroMasRentadoComponent implements OnInit {
     },
     (error:any) => alert('Error al cargar')
     )
+  }
+
+  getTitulo(){
+    this.titulo = JSON.stringify(localStorage.getItem('consulta'))
+    return this.titulo.titulo
+  }
+
+  getCompras(){
+    this.compras = this.restLibro.getConsulta().compras
   }
 
 }

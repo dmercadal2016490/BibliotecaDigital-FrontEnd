@@ -21,6 +21,7 @@ import { HistorialComponent } from './components/historial/historial.component';
 import { LoggedGuardGuard } from './guards/logged-guard.guard';
 import { LoggedoutGuardGuard } from './guards/logged-out-guard.guard';
 import { AdminGuardGuard } from './guards/admin-guard.guard';
+import { NoUserGuardGuard } from './guards/no-user-guard.guard';
 
 const routes: Routes = [
   {path:'', component:IndexComponent},
@@ -30,12 +31,12 @@ const routes: Routes = [
   {path:'home',canActivate:[LoggedGuardGuard], component:HomeComponent},
   {path:'saveUser',canActivate:[AdminGuardGuard], component:SaveUserComponent},
   {path:'listUsers',canActivate:[AdminGuardGuard], component:ListUsersComponent},
-  {path:'libroMasRentado',canActivate:[AdminGuardGuard], component:LibroMasRentadoComponent},
-  {path:'revistaMasRentada',canActivate:[AdminGuardGuard], component:RevistaMasRentadoComponent},
+  {path:'libroMasRentado',canActivate:[NoUserGuardGuard], component:LibroMasRentadoComponent},
+  {path:'revistaMasRentada',canActivate:[NoUserGuardGuard], component:RevistaMasRentadoComponent},
   {path:'usuarioMasRenta',canActivate:[AdminGuardGuard], component:UsuarioMasRentaComponent},
   {path:'user',canActivate:[LoggedGuardGuard], component:UserComponent},
   {path:'misLibros',canActivate:[LoggedGuardGuard], component:MisLibrosComponent},
-  {path:'librosAgotados',canActivate:[AdminGuardGuard], component:LibrosAgotadosComponent},
+  {path:'librosAgotados',canActivate:[NoUserGuardGuard], component:LibrosAgotadosComponent},
   {path:'addLibro', component:AddLibroComponent},
   {path:'historial', canActivate:[LoggedGuardGuard], component:HistorialComponent},
   {path:'**', component:NotFoundComponent}

@@ -18,6 +18,7 @@ img{
     width: 220px;
     float: left;
     margin-left: 600px;
+    border-style: outset;
 }
 
 .texto1{
@@ -60,4 +61,8 @@ img{
 
 .modal-body{
     background-color:seashell;
+}
+
+.centrado{
+    text-align: center;
 }

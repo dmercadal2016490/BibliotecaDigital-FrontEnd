@@ -24,6 +24,7 @@ export class RestLibroService {
 
   public user;
   public token;
+  public libro;
 
   private extractData(res: Response){
     let body = res;
@@ -129,5 +130,15 @@ export class RestLibroService {
 
     return this.http.put(this.uri +'search', params, this.httpOptions)
       .pipe(map(this.extractData))
+  }
+
+  getConsulta(){
+    let libro = JSON.parse(localStorage.getItem('consulta'));
+    if(libro != undefined || libro != null){
+      this.libro = libro
+    }else{
+      this.libro = null;
+    }
+    return this.libro;
   }
 }

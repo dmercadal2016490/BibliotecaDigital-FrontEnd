@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ​​​ChartsModule }​​​from 'ng2-charts';
+
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
@@ -48,7 +50,8 @@ import { HistorialComponent } from './components/historial/historial.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ​​​ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

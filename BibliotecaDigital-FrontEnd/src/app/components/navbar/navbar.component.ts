@@ -14,11 +14,11 @@ export class NavbarComponent implements OnInit {
   token:string;
   user;
   uri;
-  libroBuscar:Libro;
+  libro:Libro;
   libroBuscado;
 
   constructor(private restUser:RestUserService, private router:Router, private restLibro:RestLibroService) {
-    this.libroBuscar = new Libro('','','','','','','','','',null,'',null,null,null);  
+    this.libro = new Libro('','','','','','','','','',null,'',null,null,null);  
   }
 
   ngOnInit(): void {
@@ -39,9 +39,10 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit(form){
-    this.restLibro.search(this.libroBuscar).subscribe((res:any)=>{
+    this.restLibro.search(this.libro).subscribe((res:any)=>{
       if(res.libroSerached){
         alert(res.message);
+        this.libro = new Libro('','','','','','','','','',null,'',null,null,null);
         this.libroBuscado = res.libroSerached.libroSerached;
         form.reset();
         localStorage.setItem('libroSearched', JSON.stringify(this.libroBuscado))

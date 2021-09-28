@@ -1,5 +1,5 @@
 html{
-    background-image: url('../../../assets/img/fondo2.jpg');
+    background-image: url('../../../assets/img/fondo3.jfif');
     background-size: 100%;
     min-height: 100vh
 }
@@ -9,12 +9,12 @@ html{
     font-family: serif;
     padding: 10px;
     text-align: center;
-    color: transparent;
+    color: #196131;
     -webkit-text-stroke: 3px #196131;
 }
 
 div{
-    margin-top: 220px;
+    margin-top: 150px;
     margin-left: 650px;
     background-color: bisque;
     border-style: ridge;
@@ -38,7 +38,7 @@ button{
     font-size: 20px;
 }
 
-div:hover{
+/*div:hover{
     background-color: #16E7F5;
     transition: all 1s;
-}
+}*/

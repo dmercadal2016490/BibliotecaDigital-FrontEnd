@@ -31,6 +31,9 @@
         <div *ngIf="user.librosRentados == 10" class="alert alert-danger" role="alert">
           Ya no puedes reservar mas libros
         </div>
+        <div *ngIf="user.role != 'ROLE_USER'" class="alert alert-warning" role="alert">
+          Solo un usuario normal puede reservar libros
+        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -39,7 +42,7 @@
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#agregarCopias">Agregar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#quitarCopias">Quitar copias</button>
           <button *ngIf="user.role != 'ROLE_USER'" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#imagen">Subir Imagen</button>
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservar" *ngIf="(libro.disponibles > 0 && user.librosRentados < 10)">Reservar</button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservar" *ngIf="(libro.disponibles > 0 && user.librosRentados < 10 && user.role == 'ROLE_USER')">Reservar</button>
         </div>
       </div>
     </div>
@@ -99,7 +102,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <h3>Elije tu imagen</h3>
+        <h1>Elije tu imagen</h1>
         <form #formUpload="ngForm">
           <label for="inputImage"></label>
           <input type="file" name="image" id="inputImage" (change)="fileChange($event)" required>
