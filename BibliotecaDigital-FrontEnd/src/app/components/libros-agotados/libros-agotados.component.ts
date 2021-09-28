@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-libros-agotados',
@@ -19,10 +20,19 @@ export class LibrosAgotadosComponent implements OnInit {
   librosAgotados(){
     this.restLibro.librosAgotados().subscribe((res:any)=>{
       if(res.found){
+        Swal.fire(
+          'Agotados',
+          res.message,
+          'warning',
+        )
         this.data = res.found;
         localStorage.setItem('consulta', JSON.stringify(this.data));
       }else{
-        alert(res.message);
+        Swal.fire(
+          'Sin resultados',
+          res.message,
+          'warning',
+        )
       }
     },
     (error:any) => alert('Error al cargar')

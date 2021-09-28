@@ -57,3 +57,9 @@ img{
 button{
     margin-left: 430px;
 }
+
+.copyright{
+    font-family: Candara;
+    text-align: center;
+    color: #ddd;
+}

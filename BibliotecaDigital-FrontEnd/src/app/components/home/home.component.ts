@@ -5,6 +5,7 @@ import { RestReservacionService } from 'src/app/services/restReservacion/rest-re
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { Libro } from 'src/app/models/libro';
 import { CONNECTION } from 'src/app/services/global';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,13 @@ export class HomeComponent implements OnInit {
     this.libroSelected = JSON.parse(localStorage.getItem('libroSelected'));
     this.libro = new Libro('','','','','','','','','',null,'',null,null,null);
     this.user = this.restUser.getUser();
+    if(this.user.librosRentados == 10){
+      Swal.fire(
+        'Cuidado',
+        'Ya has alcanzado tu limite para reservar libros',
+        'warning',
+      )
+    }
   }
 
   verLibros(){
@@ -63,11 +71,18 @@ export class HomeComponent implements OnInit {
   agregarCopias(){
     this.restLibro.agregarCopias(this.user._id, this.libro._id,this.libro).subscribe((res:any)=>{
       if(res.agregado){
-        alert(res.message);
+        Swal.fire(
+          'Exito',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
         localStorage.setItem('libroSelected', JSON.stringify(res.agregado));
-        this.refreshPage();
       }else{
-        alert('No se agregaron las copias')
+        Swal.fire(
+          'Error',
+          'No se agrgaron las copias',
+          'error'
+        )
       }
     },
     error=> alert(error.error.message)
@@ -77,12 +92,18 @@ export class HomeComponent implements OnInit {
   quitarCopias(){
     this.restLibro.quitarCopias(this.user._id, this.libro._id,this.libro).subscribe((res:any)=>{
       if(res.quitado){
-        alert(res.message);
+        Swal.fire(
+          'Exito',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
         localStorage.setItem('libroSelected', JSON.stringify(res.quitado));
-        this.refreshPage();
       }else{
-        alert(res.message);
-        this.refreshPage();
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        ).then(this.refreshPage)
       }
     },
     error=> alert(error.error.message)
@@ -100,8 +121,12 @@ export class HomeComponent implements OnInit {
           this.libro.image = res.libroImage;
           this.libro = res.libro;
           localStorage.setItem('libros', JSON.stringify(this.libro));
-          alert('Imagen de libro subida con exito');
-          this.refreshPage();
+          Swal.fire(
+            'Exito',
+            'Imagen subida con exito',
+            'success',
+          )
+          /*this.refreshPage();*/
         }else{
           alert('imagen subida')
         }
@@ -119,12 +144,19 @@ export class HomeComponent implements OnInit {
     this.restReservacion.reservar(this.user._id, this.libro._id).subscribe((res:any)=>{
       if(res.pushed){
         delete res.pushed.password;
-        alert(res.message);
+        Swal.fire(
+          'Reservado',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
         this.user = res.pushed;
-        localStorage.setItem('user', JSON.stringify(res.pushed));
-        this.refreshPage();
+        localStorage.setItem('user', JSON.stringify(res.pushed));        
       }else{
-        alert(res.message)
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
     (error:any) => alert(error.error.message)
@@ -134,11 +166,17 @@ export class HomeComponent implements OnInit {
   deleteLibro(){
     this.restLibro.deleteLibro(this.user._id,this.libro._id).subscribe((res:any)=>{
       if(res.libroDeleted){
-        alert(res.message);
-        this.refreshPage();
+        Swal.fire(
+          'Eliminado',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
       }else{
-        alert(res.message);
-        this.refreshPage();
+        Swal.fire(
+          'Eliminado',
+          res.message,
+          'warning'
+        ).then(this.refreshPage)
       }
     },
     (error:any) => alert(error.error.message)
@@ -148,13 +186,21 @@ export class HomeComponent implements OnInit {
   updateLibro(){
     this.restLibro.updateLibro(this.user._id, this.libro).subscribe((res:any)=>{
       if(res.libroUpdated){
-        alert(res.message);
+        Swal.fire(
+          'Actualizado',
+          res.message,
+          'success',
+        )
         localStorage.setItem('libroSelected', JSON.stringify(res.libroUpdated));
       }else{
-        this.message = res.message;
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
-    (error:any) => this.message = error.error.message
+    (error:any) => alert(error.error.message)
     )
   }
 

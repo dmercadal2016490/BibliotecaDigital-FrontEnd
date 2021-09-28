@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CONNECTION } from '../../services/global';
 import { Libro } from '../../models/libro';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-navbar',
@@ -35,7 +36,11 @@ export class NavbarComponent implements OnInit {
   logOut(){
     localStorage.clear();
     this.router.navigateByUrl('index')
-    alert('Gracias por visitarnos. Vuelve pronto')
+    Swal.fire(
+      'Sesión Cerrada',
+      'Gracios visitarnos',
+      'success'
+    )
   }
 
   onSubmit(form){
@@ -52,5 +57,16 @@ export class NavbarComponent implements OnInit {
     },
     (error:any) => alert(error.error.message)
     )
+  }
+
+  acercaDe(){
+    Swal.fire({
+      title: 'Diego Rodrigo Mercadal Reyes',
+      text: 'Carnet: 2016490  Código Tecnico: IN6AM',
+      imageUrl: '../../../assets/img/YO.jpg',
+      imageWidth: 400,
+      imageHeight: 400,
+      imageAlt: 'Custom image',
+    })
   }
 }

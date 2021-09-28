@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -36,7 +37,11 @@ export class LoginComponent implements OnInit {
         }else{
           localStorage.setItem('token', this.token);
           localStorage.setItem('user', JSON.stringify(this.userLogged));
-          alert('Usuario logeado correctamente')
+          Swal.fire(
+            'Logeado',
+            'Usuario Logeado Correctamente',
+            'success'
+          )
           this.router.navigateByUrl('home')
         }
       }

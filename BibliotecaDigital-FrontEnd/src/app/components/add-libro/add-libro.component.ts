@@ -3,6 +3,7 @@ import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service'
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { Libro } from 'src/app/models/libro';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-libro',
@@ -28,12 +29,20 @@ export class AddLibroComponent implements OnInit {
   onSubmit(form){
     this.restLibro.addLibro(this.user._id, this.libro).subscribe((res:any)=>{
       if(res.libroSaved){
-        alert(res.message);
+        Swal.fire(
+          'Creado',
+          res.message,
+          'success',
+        )
         this.libro = new Libro('','','','','','','','','',null,'',null,null,null);
         form.reset();
         this.router.navigateByUrl('home');
       }else{
-        this.message = res.message;
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
     (error:any) => this.message = error.error.message

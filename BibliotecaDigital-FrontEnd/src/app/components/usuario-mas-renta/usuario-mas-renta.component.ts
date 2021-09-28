@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-usuario-mas-renta',
@@ -19,6 +20,11 @@ export class UsuarioMasRentaComponent implements OnInit {
   usuarioRenta(){
     this.restUser.usuarioMasRenta().subscribe((res:any)=>{
       if(res.userFind){
+        Swal.fire(
+          'Encontados',
+          'Usuario con mas rentas',
+          'info',
+        )
         this.data = res.userFind;
         localStorage.setItem('consulta', JSON.stringify(this.data));
       }else{

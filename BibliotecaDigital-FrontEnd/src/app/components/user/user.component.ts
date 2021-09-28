@@ -3,6 +3,8 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { CONNECTION } from 'src/app/services/global';
 import { UploadImageService } from 'src/app/services/uploadImage/upload-image.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-user',
@@ -30,7 +32,11 @@ export class UserComponent implements OnInit {
         if(res.user){
           this.user.image = res.userImage;
           localStorage.setItem('user', JSON.stringify(this.user));
-          alert('Imagen subida con exito');
+          Swal.fire(
+            'Exito',
+            'Imagen subida con exito',
+            'success',
+          )
         }else{
           alert(res.message)
         }
@@ -45,11 +51,19 @@ export class UserComponent implements OnInit {
   deleteUser(){
     this.restUser.deleteUser(this.user._id).subscribe((res:any)=>{
       if(res.userDeleted){
-        alert(res.message);
+        Swal.fire(
+          'Eliminado',
+          res.message,
+          'success',
+        )
         localStorage.clear()
         this.router.navigateByUrl('index');
       }else{
-        alert(res.message)
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
     (error:any) => alert(error.error.message)
@@ -62,11 +76,19 @@ export class UserComponent implements OnInit {
     this.restUser.updateUser(this.user).subscribe((res:any)=>{
       if(res.userUpdated){
         delete res.userUpdated.password;
-        alert(res.message);
+        Swal.fire(
+          'Actualizado',
+          res.message,
+          'success',
+        )
         this.user = res.userUpdated;
         localStorage.setItem('user', JSON.stringify(res.userUpdated))
       }else{
-        alert(res.message);
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
         this.user = this.restUser.getUser();
       }
     },

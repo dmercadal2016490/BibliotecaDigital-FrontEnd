@@ -4,6 +4,7 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { RestReservacionService } from 'src/app/services/restReservacion/rest-reservacion.service';
 import { CONNECTION } from 'src/app/services/global';
 import { Libro } from 'src/app/models/libro';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-mis-libros',
@@ -54,10 +55,13 @@ export class MisLibrosComponent implements OnInit {
   devolver(){
     this.restReservacion.devolver(this.user._id, this.miLibro._id).subscribe((res:any)=>{
       if(res.devuelto){
-        alert(res.message);
+        Swal.fire(
+          'Devuelto',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
         this.user = res.devuelto;
         localStorage.setItem('user', JSON.stringify(this.user));
-        this.refreshPage();
       }else{
         alert(res.message);
       }

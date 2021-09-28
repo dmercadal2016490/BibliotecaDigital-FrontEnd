@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-revista-mas-rentado',
@@ -19,6 +20,11 @@ export class RevistaMasRentadoComponent implements OnInit {
   revistaRentada(){
     this.restLibro.revistaMasRentada().subscribe((res:any)=>{
       if(res.revistaFound){
+        Swal.fire(
+          'Encontados',
+          'Revistas mas rentadas',
+          'info',
+        )
         this.data = res.revistaFound;
         localStorage.setItem('consulta', JSON.stringify(this.data));
       }else{

@@ -3,6 +3,7 @@ import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { RestReservacionService } from 'src/app/services/restReservacion/rest-reservacion.service';
 import { CONNECTION } from 'src/app/services/global';
 import { Libro } from 'src/app/models/libro';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-historial',
@@ -37,6 +38,11 @@ export class HistorialComponent implements OnInit {
       if(res.historial){
         this.miHistoriales = res.historial.Historial;
         localStorage.setItem('miHistoriales', JSON.stringify(this.miHistoriales));
+        Swal.fire(
+          'Historial',
+          'Este es tu historial',
+          'info',
+        )
       }else{
         alert('Error');
       }

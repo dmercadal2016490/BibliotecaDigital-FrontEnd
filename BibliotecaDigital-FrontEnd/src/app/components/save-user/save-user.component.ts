@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-save-user',
@@ -29,11 +30,20 @@ export class SaveUserComponent implements OnInit {
   onSubmit(statusForm){
     this.restUser.saveUser(this.user, this.usuario._id).subscribe((res:any)=>{
       if(res.userSaved){
-        alert(res.message);
+        Swal.fire(
+          'Creado',
+          res.message,
+          'success',
+        )
         statusForm.reset();
         this.user = new User('','','','','','','','','',null,[]);
         this.router.navigateByUrl('home');
       }else{
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
         this.message = res.message;
         this.message2 = res.Usuario;
       }

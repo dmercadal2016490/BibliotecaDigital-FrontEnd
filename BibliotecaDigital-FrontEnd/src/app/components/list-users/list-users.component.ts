@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestUserService } from 'src/app/services/restUser/rest-user.service';
 import { User } from 'src/app/models/user';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-list-users',
@@ -46,10 +47,17 @@ export class ListUsersComponent implements OnInit {
   deleteUser(){
     this.restUser.deleteUser(this.user._id).subscribe((res:any)=>{
       if(res.userDeleted){
-        alert(res.message);
-        this.refreshPage();
+        Swal.fire(
+          'Eliminado',
+          res.message,
+          'success',
+        ).then(this.refreshPage)
       }else{
-        alert(res.message)
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
     (error:any) => alert(error.error.message)
@@ -59,10 +67,17 @@ export class ListUsersComponent implements OnInit {
   updateUser(){
     this.restUser.updateUser(this.user).subscribe((res:any)=>{
       if(res.userUpdated){
-        alert(res.message);
-        this.refreshPage();
+        Swal.fire(
+          'Actualizado',
+          res.message,
+          'success',
+        )
       }else{
-        alert(res.message);
+        Swal.fire(
+          'Error',
+          res.message,
+          'error'
+        )
       }
     },
     (error:any) => alert(error.error.message)

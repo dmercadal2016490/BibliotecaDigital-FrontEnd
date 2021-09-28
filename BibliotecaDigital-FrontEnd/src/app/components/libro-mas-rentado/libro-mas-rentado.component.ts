@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestLibroService } from 'src/app/services/restLibro/rest-libro.service';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-libro-mas-rentado',
@@ -24,10 +25,19 @@ export class LibroMasRentadoComponent implements OnInit {
   libroRentado(){
     this.restLibro.libroMasRentado().subscribe((res:any)=>{
       if(res.libroFound){
+        Swal.fire(
+          'Encontados',
+          'Libros mas rentados',
+          'info',
+        )
         this.data = res.libroFound;
         localStorage.setItem('consulta', JSON.stringify(this.data));
       }else{
-        alert(res.message);
+        Swal.fire(
+          'Sin resultados',
+          res.message,
+          'warning',
+        )
       }
     },
     (error:any) => alert('Error al cargar')
